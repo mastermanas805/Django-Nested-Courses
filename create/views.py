@@ -8,7 +8,7 @@ class Create_Course_View(CreateView):
     model = courses
     form_class = CourseForm
     template_name = 'create/add.html'
-    success_url = 'create/save.html'
+    success_url = 'create/add.html'
 
     def form_valid(self, form):
         result = super(Create_Course_View, self).form_valid(form)
@@ -24,14 +24,8 @@ class Create_Course_View(CreateView):
         #authors_count = 0
         topics_count = 0
 
-        # for author in authors:
-        #     books_formset = BookInlineFormSet(form.data, instance=author, prefix='books_formset_%s' % authors_count)
-        #     if books_formset.is_valid():
-        #         books_formset.save()
-        #     authors_count += 1
-        print(topics)
         for topic in topics:
-            sub_topic_formset = Sub_TopicFormset(form.data, instance = topic, prefix='sub_topic_formset_%s topics_count')
+            sub_topic_formset = Sub_TopicFormset(form.data, instance = topic, prefix='sub_topic_formset_%s'% topics_count)
             if sub_topic_formset.is_valid():
                 sub_topic_formset.save()
             topics_count += 1

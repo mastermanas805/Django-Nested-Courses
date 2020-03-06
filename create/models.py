@@ -14,6 +14,9 @@ class topics(models.Model):
 
 class sub_topics(models.Model):
     name  = models.CharField(max_length = 50)
+    content = models.TextField(null = True)
+    # pdf = models.FileField(null = True)
+    # image = models.ImageField(null = True)
     topic = models.ForeignKey(topics,on_delete = models.CASCADE,null = True)
 
 class course_to_topics(models.Model):
