@@ -17,8 +17,8 @@ class sub_topics(models.Model):
     name  = models.CharField(max_length = 50)
     content = models.TextField(null = True)
     sno   = models.PositiveIntegerField(default = 0)
-    pdf = models.FileField(null = True)
-    image = models.ImageField(upload_to=('images/'),null = True)
+    #pdf = models.FileField(null = True)
+    image = models.ImageField(upload_to=('images/'),blank=  True,null = True)
     topic = models.ForeignKey(topics,on_delete = models.CASCADE,null = True)
 
 class course_to_topics(models.Model):

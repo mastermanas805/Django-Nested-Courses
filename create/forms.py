@@ -27,4 +27,4 @@ class Sub_TopicForm(ModelForm):
 # sub_topicsform = modelformset_factory(sub_topics,form = Sub_TopicForm,min_num = 1)
 
 TopicFormset = inlineformset_factory(courses, topics, fields=('name','sno'),extra =1,widgets = {'sno': HiddenInput()})
-Sub_TopicFormset = inlineformset_factory(topics, sub_topics, fields=('name','content','sno','pdf','image'),extra = 1,widgets = {'sno': HiddenInput()})
+Sub_TopicFormset = inlineformset_factory(topics, sub_topics, fields=('name','content','sno','image'),extra = 1,widgets = {'sno': HiddenInput()})
