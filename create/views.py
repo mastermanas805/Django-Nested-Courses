@@ -26,8 +26,9 @@ class Create_Course_View(CreateView):
 
         for topic in topics:
             sub_topic_formset = Sub_TopicFormset(form.data, instance = topic, prefix='sub_topic_formset_%s'% topics_count)
+            print(sub_topic_formset.is_valid())
             if sub_topic_formset.is_valid():
-                sub_topic_formset.save()
+                x = sub_topic_formset.save()
             topics_count += 1
 
         return result

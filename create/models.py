@@ -10,13 +10,15 @@ class courses(models.Model):
 
 class topics(models.Model):
     name  = models.CharField(max_length = 50)
+    sno   = models.PositiveIntegerField(default = 0)
     course = models.ForeignKey(courses,on_delete = models.CASCADE,null = True)
 
 class sub_topics(models.Model):
     name  = models.CharField(max_length = 50)
     content = models.TextField(null = True)
-    # pdf = models.FileField(null = True)
-    # image = models.ImageField(null = True)
+    sno   = models.PositiveIntegerField(default = 0)
+    pdf = models.FileField(null = True)
+    image = models.ImageField(upload_to=('images/'),null = True)
     topic = models.ForeignKey(topics,on_delete = models.CASCADE,null = True)
 
 class course_to_topics(models.Model):
