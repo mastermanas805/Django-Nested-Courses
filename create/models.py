@@ -21,6 +21,9 @@ class sub_topics(models.Model):
     image = models.ImageField(upload_to=('images/'),blank=  True,null = True)
     topic = models.ForeignKey(topics,on_delete = models.CASCADE,null = True)
 
+class image(models.Model):
+    image = models.ImageField(upload_to=('images/'),blank=  True,null = True)
+
 class course_to_topics(models.Model):
     serial_no = models.IntegerField()
     course =  models.ForeignKey(courses ,related_name="course",

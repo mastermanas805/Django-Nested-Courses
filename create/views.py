@@ -1,5 +1,5 @@
-from .forms import CourseForm,TopicFormset,Sub_TopicFormset
-from .models import courses,topics,sub_topics
+from .forms import CourseForm,TopicFormset,Sub_TopicFormset, Upload
+from .models import courses,topics,sub_topics, image
 from django.shortcuts import render
 from django.views.generic import CreateView
 from django.http import HttpResponse
@@ -38,4 +38,18 @@ class Create_Course_View(CreateView):
         context = super(Create_Course_View, self).get_context_data(**kwargs)
         context['topic_formset'] = TopicFormset(prefix='topic_formset')
         context['sub_topic_formset'] = Sub_TopicFormset(prefix='sub_topic_formset_0')
+        return context
+
+
+class upload_image(CreateView):
+    model = image
+    form_class = Upload
+    template_name = 'create/upload.html'
+
+    def form_valid(self, form):
+        result = super(upload_image, self).form_valid(form)
+        return result
+
+    def get_context_data(self, **kwargs):
+        context = super(upload_image, self).get_context_data(**kwargs)
         return context
