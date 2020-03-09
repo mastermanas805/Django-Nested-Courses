@@ -27,9 +27,9 @@ class Upload(ModelForm):
         model = image
         field = ['image']
         exclude = ()
-# courseform = modelformset_factory(courses,form = CourseForm,min_num = 1)
-# topicform = modelformset_factory(topics,form = TopicForm,min_num = 1)
-# sub_topicsform = modelformset_factory(sub_topics,form = Sub_TopicForm,min_num = 1)
+
+    def clean(self):
+        cleaned_data = super().clean()
 
 TopicFormset = inlineformset_factory(courses, topics, fields=('name','sno'),extra =1,widgets = {'sno': HiddenInput()})
-Sub_TopicFormset = inlineformset_factory(topics, sub_topics, fields=('name','content','sno','image'),extra = 1,widgets = {'sno': HiddenInput(),'content':attrs.update({'class': 'btn-primary'})})
+Sub_TopicFormset = inlineformset_factory(topics, sub_topics, fields=('name','content','sno','image'),extra = 1,widgets = {'sno': HiddenInput()})

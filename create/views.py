@@ -13,24 +13,24 @@ class Create_Course_View(CreateView):
     def form_valid(self, form):
         result = super(Create_Course_View, self).form_valid(form)
 
-        #authors_formset = AuthorInlineFormSet(form.data, instance=self.object, prefix='authors_formset')
         topic_formset = TopicFormset(form.data, instance=self.object, prefix='topic_formset')
 
-        # if authors_formset.is_valid():
-        #     authors = authors_formset.save()
         if topic_formset.is_valid():
             topics = topic_formset.save()
 
-        #authors_count = 0
         topics_count = 0
 
         for topic in topics:
             sub_topic_formset = Sub_TopicFormset(form.data, instance = topic, prefix='sub_topic_formset_%s'% topics_count)
-            x = sub_topic_formset.cleaned_data
-            print(x[0])
+            # x = sub_topic_formset.cleaned_data
+            # print(x[0])
+            print(sub_topic_formset.image())
             if sub_topic_formset.is_valid():
                 sub_topic_formset.save()
-            topics_count += 1
+
+            # if image.is_valid():
+            #     image.save()
+            # topics_count += 1
 
         return result
 
@@ -38,6 +38,8 @@ class Create_Course_View(CreateView):
         context = super(Create_Course_View, self).get_context_data(**kwargs)
         context['topic_formset'] = TopicFormset(prefix='topic_formset')
         context['sub_topic_formset'] = Sub_TopicFormset(prefix='sub_topic_formset_0')
+        # context['image'] = upload_image
+        # print(upload_image)
         return context
 
 

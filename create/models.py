@@ -17,12 +17,14 @@ class sub_topics(models.Model):
     name  = models.CharField(max_length = 50)
     content = models.TextField(null = True)
     sno   = models.PositiveIntegerField(default = 0)
+    image = models.ImageField(upload_to="images/")
     #pdf = models.FileField(null = True)
-    image = models.ImageField(upload_to=('images/'),blank=  True,null = True)
     topic = models.ForeignKey(topics,on_delete = models.CASCADE,null = True)
 
 class image(models.Model):
     image = models.ImageField(upload_to=('images/'),blank=  True,null = True)
+    #sub_topic = models.OneToOneField(sub_topics,on_delete = models.CASCADE,null = True)
+
 
 class course_to_topics(models.Model):
     serial_no = models.IntegerField()
